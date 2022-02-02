@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import { getProducts, getOneProduct } from "../../models/product";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import CreateProduct from "../../components/CreateProduct";
 
@@ -13,16 +14,24 @@ export default function FicheDetails({ product }) {
       <div className="p-2 max-w-[500px]">
         <Fiche product={product} />
       </div>
-      <div
-        className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2"
-        onClick={() => setShowEdit(!showEdit)}
-      >
-        <h2 className="text-five">{showEdit ? "Annuler" : "Éditer :"} </h2>
-        {showEdit ? (
-          <CloseIcon sx={{ color: "#A4A4A4", fontSize: 30 }} />
-        ) : (
-          <EditIcon sx={{ color: "#A4A4A4", fontSize: 30 }} />
-        )}
+      <div className="flex gap-2">
+        <div
+          className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-secondary"
+          onClick={() => setShowEdit(!showEdit)}
+        >
+          <h2 className="text-third font-medium">
+            {showEdit ? "Annuler" : "Éditer :"}{" "}
+          </h2>
+          {showEdit ? (
+            <CloseIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+          ) : (
+            <EditIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+          )}
+        </div>
+        <div className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-brownSemis">
+          <h2 className="text-third font-medium">Supprimer</h2>
+          <DeleteIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+        </div>
       </div>
       {showEdit && (
         <CreateProduct
