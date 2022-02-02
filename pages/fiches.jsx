@@ -29,6 +29,7 @@ function fiches() {
                 </div>}
             </div>
             <h1 className="text-secondary text-4xl w-full text-center mb-4">Fiches</h1>
+            <input className="rounded-xl border-2 bg-transparent w-2/3"></input>
             {listOfProducts.length !== 0 ? (
                 <ul className="flex flex-col gap-4 py-4 px-4 items-center w-full">
                         {listOfProducts.map((product) => {
