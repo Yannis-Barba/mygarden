@@ -8,7 +8,7 @@ function fiches() {
     return (
         <Layout pageTitle={"Fiches"}>
             <div>
-                {showCreateProduct && <CreateProduct/>}
+                {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct}/>}
                 <div id="addProduct" className="bg-secondary/80 w-fit rounded-full cursor-pointer" onClick={() => setShowCreateProduct(!showCreateProduct)}>
                     <AddIcon sx={{color: "#FFFFF4", fontSize: 50}}/>
                 </div>
