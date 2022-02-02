@@ -33,7 +33,7 @@ function fiches() {
                 <ul className="flex flex-col gap-4 py-4 px-4 items-center w-full">
                         {listOfProducts.map((product) => {
                             return (
-                                <li key={product._id} className="w-4/5">
+                                <li key={product._id} className="w-fit">
                                     <Fiche product={product}/>
                                 </li>
                             )

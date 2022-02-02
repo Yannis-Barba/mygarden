@@ -49,7 +49,7 @@ function CreateProduct({setShowCreateProduct}) {
 
     const months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     return (
-        <div className="absolute bg-third h-fit w-full px-4 py-8 flex flex-col justify-center items-center">
+        <div className="absolute z-50 bg-third h-fit w-full px-4 py-8 flex flex-col justify-center items-center">
             <CloseIcon sx={{color: "#00477A", fontSize: 50}} className="absolute right-2 top-2 cursor-pointer" onClick={() => setShowCreateProduct(false)}/>
             <form className="bg-third py-4 px-2 flex flex-col gap-4 rounded-xl">
                 <h1 className="text-secondary text-4xl w-full text-center mb-4">Ajouter un produit</h1>
