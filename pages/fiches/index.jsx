@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import CreateProduct from "../components/CreateProduct";
-import Layout from "../components/Layout";
+import CreateProduct from "../../components/CreateProduct";
+import Layout from "../../components/Layout";
 import AddIcon from '@mui/icons-material/Add';
 
 import axios from "axios";
-import Fiche from "../components/Fiche";
+import Fiche from "../../components/Fiche";
 
 function fiches() {
     const [showCreateProduct, setShowCreateProduct] = useState(false);

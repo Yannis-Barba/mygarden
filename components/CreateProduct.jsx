@@ -35,6 +35,7 @@ function CreateProduct({setShowCreateProduct}) {
             badAssociation
         })
         setSendStatus(res.status === 201);
+        setShowCreateProduct(false);
     }
 
     function addNewGoodAssociation(){

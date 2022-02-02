@@ -22,7 +22,12 @@ function getProducts() {
   return collection.find().toArray();
 }
 
+function getOneProduct(id) {
+  return collection.findOne({ _id: ObjectId(id) });
+}
+
 module.exports = {
   createProduct,
   getProducts,
+  getOneProduct,
 };

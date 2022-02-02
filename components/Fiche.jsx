@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function Fiche({product}) {
@@ -23,6 +24,7 @@ function Fiche({product}) {
     }, [])
 
     return (
+        <Link passHref href={`/fiches/${product._id}`}>
         <div className="bg-white drop-shadow-xl cursor-pointer p-4 rounded-xl flex flex-col gap-4">
             <div className="flex gap-4">
                 <img src="./pictures/carrot.svg" alt={product.name} className="w-20 h-20"/>
@@ -31,7 +33,7 @@ function Fiche({product}) {
                     <h3 className="font-thin">{product.genre}</h3>
                 </div>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 items-center">
                 <ul className="flex">
                     {months.map((month, index) => {
                         return (
@@ -77,6 +79,7 @@ function Fiche({product}) {
                 </ul>
             </div>
         </div>
+        </Link>
     );
 }
 
