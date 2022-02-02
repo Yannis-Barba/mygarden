@@ -157,7 +157,7 @@ function CreateProduct({setShowCreateProduct}) {
                     </ul>
                     )}
                 <div className="w-full flex justify-center">
-                    <div className="bg-secondary/80 w-fit p-2 rounded-xl text-third font-medium" onClick={() => sendNewProduct()}>Valider</div>
+                    <div className="bg-secondary/80 w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => sendNewProduct()}>Valider</div>
                 </div>
             </form>
             
