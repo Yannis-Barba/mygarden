@@ -8,4 +8,9 @@ async function handlePostProduct(req, res) {
   }
 }
 
-export default base().post(handlePostProduct);
+async function handleGetProducts(req, res) {
+  const products = await Product.getProducts();
+  res.status(200).send(products);
+}
+
+export default base().post(handlePostProduct).get(handleGetProducts);

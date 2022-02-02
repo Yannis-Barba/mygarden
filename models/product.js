@@ -18,6 +18,11 @@ function createProduct(data) {
   });
 }
 
+function getProducts() {
+  return collection.find().toArray();
+}
+
 module.exports = {
   createProduct,
+  getProducts,
 };
