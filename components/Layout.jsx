@@ -3,17 +3,17 @@ import NavBar from "./NavBar";
 
 function Layout({children, pageTitle}) {
     return (
-        <>
-        <Head>
-            <title>{pageTitle}</title>
-        </Head>
-        <header>
-            <NavBar/>
-        </header>
-        <main>
-            {children}
-        </main>
-        </>
+        <div className="flex flex-col h-full">
+            <Head>
+                <title>{pageTitle}</title>
+            </Head>
+            <header>
+                <NavBar/>
+            </header>
+            <main className="bg-third h-full w-full flex flex-col">
+                {children}
+            </main>
+        </div>
     );
 }
 
