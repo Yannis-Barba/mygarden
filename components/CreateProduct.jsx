@@ -49,8 +49,7 @@ function CreateProduct({setShowCreateProduct}) {
 
     const months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     return (
-        <div className="absolute z-50 bg-third h-fit w-full px-4 py-8 flex flex-col justify-center items-center">
-            <CloseIcon sx={{color: "#00477A", fontSize: 50}} className="absolute right-2 top-2 cursor-pointer" onClick={() => setShowCreateProduct(false)}/>
+        <div className=" bg-third h-fit w-full flex flex-col justify-center items-center">
             <form className="bg-third py-4 px-2 flex flex-col gap-4 rounded-xl">
                 <h1 className="text-secondary text-4xl w-full text-center mb-4">Ajouter un produit</h1>
                 <label htmlFor="name" className="text-fourth/50 flex gap-4"> Name
@@ -156,8 +155,10 @@ function CreateProduct({setShowCreateProduct}) {
                         })}
                     </ul>
                     )}
-                <div className="w-full flex justify-center">
-                    <div className="bg-secondary/80 w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => sendNewProduct()}>Valider</div>
+                <div className="w-full flex gap-4 justify-center">
+                <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowCreateProduct(false)}>Annuler</div>
+                    <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => sendNewProduct()}>Valider</div>
+
                 </div>
             </form>
             
