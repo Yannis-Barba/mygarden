@@ -2,26 +2,45 @@ import { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 
-function CreateProduct({setShowCreateProduct}) {
+function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false, product}) {
 
-    const [name, setName] = useState("");
-    const [genre, setGenre] = useState("");
-    const [semisStart, setSemisStart] = useState("janvier");
-    const [semisEnd, setSemisEnd] = useState("janvier");
-    const [plantationStart, setPlantationStart] = useState("janvier");
-    const [plantationEnd, setPlantationEnd] = useState("janvier");
-    const [recolteStart, setRecolteStart] = useState("janvier");
-    const [recolteEnd, setRecolteEnd] = useState("janvier");
-    const [imgUrl, setImgUrl] = useState("")
+    const [name, setName] = useState(product ? product.name : "");
+    const [genre, setGenre] = useState(product ? product.genre :"");
+    const [semisStart, setSemisStart] = useState(product ? product.semisStart : "janvier");
+    const [semisEnd, setSemisEnd] = useState(product ? product.semisEnd : "janvier");
+    const [plantationStart, setPlantationStart] = useState(product ? product.plantationStart : "janvier");
+    const [plantationEnd, setPlantationEnd] = useState(product ? product.plantationEnd : "janvier");
+    const [recolteStart, setRecolteStart] = useState(product ? product.recolteStart : "janvier");
+    const [recolteEnd, setRecolteEnd] = useState(product ? product.recolteEnd : "janvier");
+    const [imgUrl, setImgUrl] = useState(product ? product.imgUrl : "")
     const [newGoodAssociation, setNewGoodAssociation] = useState("");
     const [newBadAssociation, setNewBadAssociation] = useState("");
-    const [goodAssociation, setGoodAssociation] = useState([]);
-    const [badAssociation, setBadAssociation] = useState([]);
+    const [goodAssociation, setGoodAssociation] = useState(product ? product.goodAssociation : []);
+    const [badAssociation, setBadAssociation] = useState(product ? product.badAssociation : []);
 
     const [sendStatus, setSendStatus] = useState(false)
 
     async function sendNewProduct(){
         const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/products`, {
+            name, 
+            genre, 
+            semisStart,
+            semisEnd, 
+            plantationStart, 
+            plantationEnd, 
+            recolteStart, 
+            recolteEnd, 
+            imgUrl, 
+            goodAssociation, 
+            badAssociation
+        })
+        setSendStatus(res.status === 201);
+        setShowCreateProduct(false);
+    }
+
+    async function sendUpdatedProduct(){
+        const res = await axios.put(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/products`, {
+            id: product._id,
             name, 
             genre, 
             semisStart,
@@ -52,7 +71,7 @@ function CreateProduct({setShowCreateProduct}) {
     return (
         <div className=" bg-third h-fit w-full flex flex-col justify-center items-center">
             <form className="bg-third py-4 px-2 flex flex-col gap-4 rounded-xl">
-                <h1 className="text-secondary text-4xl w-full text-center mb-4">Ajouter un produit</h1>
+                <h1 className="text-secondary text-4xl w-full text-center mb-4">{forUpdate ? "Éditer ": "Ajouter"} un produit</h1>
                 <label htmlFor="name" className="text-fourth/50 flex gap-4"> Name
                     <input id="name"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={name} onChange={(e) => setName(e.target.value)}></input>
                 </label>
@@ -157,8 +176,8 @@ function CreateProduct({setShowCreateProduct}) {
                     </ul>
                     )}
                 <div className="w-full flex gap-4 justify-center">
-                <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowCreateProduct(false)}>Annuler</div>
-                    <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => sendNewProduct()}>Valider</div>
+                <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowCreateProduct(!showCreateProduct)}>Annuler</div>
+                    <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => forUpdate ? sendUpdatedProduct() : sendNewProduct()}>Valider</div>
 
                 </div>
             </form>

@@ -13,4 +13,14 @@ async function handleGetProducts(req, res) {
   res.status(200).send(products);
 }
 
-export default base().post(handlePostProduct).get(handleGetProducts);
+async function handlePutProduct(req, res) {
+  if (req.body.id) {
+    const updatedProduct = await Product.updateOneProduct(req.body);
+    res.status(200).send(updatedProduct);
+  }
+}
+
+export default base()
+  .post(handlePostProduct)
+  .get(handleGetProducts)
+  .put(handlePutProduct);

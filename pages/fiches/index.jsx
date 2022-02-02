@@ -41,7 +41,7 @@ function fiches() {
                 </ul>
             </div>}
             <p>ou</p>
-            {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct}/>}
+            {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct} showCreateProduct={showCreateProduct}/>}
                 {!showCreateProduct && (
                 <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowCreateProduct(!showCreateProduct)}>
                     <p className="text-lg"> Ajouter un nouveau produit</p>

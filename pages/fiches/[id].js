@@ -4,6 +4,7 @@ import { getProducts, getOneProduct } from "../../models/product";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
+import CreateProduct from "../../components/CreateProduct";
 
 export default function FicheDetails({ product }) {
   const [showEdit, setShowEdit] = useState(false);
@@ -23,6 +24,14 @@ export default function FicheDetails({ product }) {
           <EditIcon sx={{ color: "#A4A4A4", fontSize: 30 }} />
         )}
       </div>
+      {showEdit && (
+        <CreateProduct
+          setShowCreateProduct={setShowEdit}
+          showCreateProduct={showEdit}
+          forUpdate={true}
+          product={product}
+        />
+      )}
     </Layout>
   );
 }
