@@ -18,8 +18,22 @@ function getAllButtes() {
   return collection.find().toArray();
 }
 
+function updateButte(data) {
+  return collection.updateOne(
+    { _id: ObjectId(data.id) },
+    {
+      $set: {
+        name: data.name,
+        description: data.description,
+        sector: data.sector,
+      },
+    }
+  );
+}
+
 module.exports = {
   createButte,
   getOneButte,
   getAllButtes,
+  updateButte,
 };

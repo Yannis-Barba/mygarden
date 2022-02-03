@@ -97,7 +97,7 @@ function Buttes() {
                     {listOfButtes.map((butte) => {
                         if(filteredSectors.includes(butte.sector)){
                             return (
-                                <Link key={butte._id} passHref href={`/sectors/${butte._id}`}>
+                                <Link key={butte._id} passHref href={`/buttes/${butte._id}`}>
                                     <li key={butte._id} className="border-fourth/30 border-2 p-2 rounded-lg text-third font-semibold bg-greenPlantation cursor-pointer">{butte.name}</li>
                                 </Link>
                             )

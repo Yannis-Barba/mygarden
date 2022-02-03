@@ -18,4 +18,14 @@ async function handleGetButtes(req, res) {
   }
 }
 
-export default base().post(handlePostButte).get(handleGetButtes);
+async function handlePutButte(req, res) {
+  if (req.body) {
+    const updatedButte = await Butte.updateButte(req.body);
+    res.status(200).send(updatedButte);
+  }
+}
+
+export default base()
+  .post(handlePostButte)
+  .get(handleGetButtes)
+  .put(handlePutButte);
