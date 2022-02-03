@@ -67,6 +67,7 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
     return (
         <div className="w-full border-five border-2 rounded-lg pt-4 px-2">
             <form className="w-full flex flex-col gap-2">
+                <h2 className="text-secondary text-2xl w-full text-center">Ajouter une récolte</h2>
                 {!forUpdate && <label htmlFor="searchProduct" className="text-five md:flex">
                     Rechercher un produit : 
                     <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setTimeout(() => setShowSearch(false), 200)}></input>
