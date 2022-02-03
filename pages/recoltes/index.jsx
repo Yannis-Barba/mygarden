@@ -35,7 +35,7 @@ function recoltes() {
 
     return (
         <Layout>
-            <div className="w-full pl-4 flex flex-col gap-2">
+            <div className="w-full pl-4 flex flex-col gap-2 mb-8">
                 <h1 className="text-secondary text-4xl w-full text-center mb-4">Récoltes</h1>
                 <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowAddNewRecolte(!showAddNewRecolte)}>
                         <p className="text-lg"> Ajouter une nouvelle récolte</p>

@@ -12,9 +12,9 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
 
     const [product, setProduct] = useState("");
     const [productId, setProductId] = useState("");
-    const [date, setDate] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [weight, setWeight] = useState("");
+    const [date, setDate] = useState(forUpdate ? recolte.date : "");
+    const [quantity, setQuantity] = useState(forUpdate ? recolte.quantity : "");
+    const [weight, setWeight] = useState(forUpdate ? recolte.weight : "");
 
     const [sendStatus, setSendStatus] = useState(false);
 
@@ -35,7 +35,13 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
     }
 
     async function sendUpdatedRecolte(){
-
+        const res = await axios.put(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/recoltes`, {
+            id: recolte._id,
+            date, 
+            quantity, 
+            weight
+        })
+        setSendStatus(res.status === 201);
     }
 
     useEffect(() => {
@@ -49,10 +55,10 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
     return (
         <div>
             <form>
-                <label htmlFor="searchProduct" className="text-five md:flex">
+                {!forUpdate && <label htmlFor="searchProduct" className="text-five md:flex">
                     Rechercher un produit : 
                     <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setTimeout(() => setShowSearch(false), 200)}></input>
-                </label>
+                </label>}
                 {showSearch && 
                 <div className={`bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-2 absolute z-40`}>
                     <ul>
@@ -64,9 +70,9 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
                     </ul>
                 </div>
                 }
-                <p> ou </p>
+                {!forUpdate && <p> ou </p>}
                 {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct} showCreateProduct={showCreateProduct}/>}
-                    {!showCreateProduct && (
+                    {!showCreateProduct && !forUpdate && (
                     <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowCreateProduct(!showCreateProduct)}>
                         <p className="text-lg"> Ajouter un nouveau produit</p>
                         <AddIcon sx={{color: "#A4A4A4", fontSize: 30}} className="border-2 rounded-full"/>
@@ -83,7 +89,7 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
                     <input id="weight"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={weight} onChange={(e) => setWeight(e.target.value)}></input>
                 </label>
                 <div className="w-full flex gap-4 justify-center">
-                    <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowAddNewRecolte(false)}>Annuler</div>
+                    {!forUpdate && <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowAddNewRecolte(false)}>Annuler</div>}
                     <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => forUpdate ? sendUpdatedRecolte() : sendNewRecolte()}>Valider</div>
 
                 </div>

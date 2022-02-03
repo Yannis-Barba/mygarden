@@ -13,4 +13,14 @@ async function handleGetRecoltes(req, res) {
   res.status(200).send(recoltes);
 }
 
-export default base().post(handlePostRecolte).get(handleGetRecoltes);
+async function handlePutRecolte(req, res) {
+  if (req.body.id) {
+    const updatedRecolte = await Recolte.updateOneRecolte(req.body);
+    res.status(204).send(updatedRecolte);
+  }
+}
+
+export default base()
+  .post(handlePostRecolte)
+  .get(handleGetRecoltes)
+  .put(handlePutRecolte);

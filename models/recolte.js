@@ -1,7 +1,6 @@
 const db = require("../db-config");
 const { ObjectId } = require("mongodb");
 const collection = db.collection("recoltes");
-import dayjs from "dayjs";
 
 function createRecolte(data) {
   return collection.insertOne({
@@ -17,7 +16,26 @@ function getManyRecoltes(period) {
   return collection.find().toArray();
 }
 
+function getOneRecolte(id) {
+  return collection.findOne({ _id: ObjectId(id) });
+}
+
+function updateOneRecolte(data) {
+  return collection.updateOne(
+    { _id: ObjectId(data.id) },
+    {
+      $set: {
+        date: data.date,
+        quantity: data.quantity,
+        weight: data.weight,
+      },
+    }
+  );
+}
+
 module.exports = {
   createRecolte,
   getManyRecoltes,
+  getOneRecolte,
+  updateOneRecolte,
 };
