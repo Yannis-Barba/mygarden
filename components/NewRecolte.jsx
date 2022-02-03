@@ -109,7 +109,7 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
         {showConfirmDeleteRecolte && (
         <div className="flex flex-col gap-2 mt-4">
           <h2 className="text-five">
-            Êtes vous sûr de vouloir supprimer ce produit ?{" "}
+            Êtes vous sûr de vouloir supprimer cette récolte ?{" "}
           </h2>
           <div className="flex w-full justify-center gap-2">
             <div
