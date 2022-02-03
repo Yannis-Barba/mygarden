@@ -1,10 +1,23 @@
 import Layout from "../../components/Layout";
 import AddIcon from '@mui/icons-material/Add';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewRecolte from "../../components/NewRecolte";
+import axios from "axios";
+import Recolte from "../../components/Recolte";
 
 function recoltes() {
     const [showAddNewRecolte, setShowAddNewRecolte] = useState(false);
+
+    const [listOfLastRecoltes, setListOfLastRecoltes] = useState([]);
+
+    async function getRecoltes(){
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/recoltes`);
+        setListOfLastRecoltes(res.data);
+    }
+
+    useEffect(() => {
+        getRecoltes();
+    }, [])
 
     return (
         <Layout>
@@ -24,6 +37,17 @@ function recoltes() {
                 </div>
                 <div>
                     <h2>Dernière Récoltes</h2>
+                    {listOfLastRecoltes.length !== 0 && (
+                        <ul className="flex flex-col gap-2">
+                            {listOfLastRecoltes.map((recolte) => {
+                                return (
+                                    <li key={recolte._id}>
+                                        <Recolte recolte={recolte}/>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    )}
                 </div>
             </div>
         </Layout>

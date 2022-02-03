@@ -10,6 +10,7 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
     const [showCreateProduct, setShowCreateProduct] = useState(false);
 
     const [product, setProduct] = useState("");
+    const [productId, setProductId] = useState("");
     const [date, setDate] = useState("");
     const [quantity, setQuantity] = useState("");
     const [weight, setWeight] = useState("");
@@ -23,7 +24,8 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
 
     async function sendNewRecolte(){
         const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/recoltes`, {
-            product, 
+            product,
+            productId,
             date, 
             quantity, 
             weight
@@ -55,7 +57,7 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
                     <ul>
                         {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product) => {
                             return (
-                                <li key={product._id} onClick={() => {setProduct(product.name); setSearchProduct(product.name); setShowSearch(false)}} className="cursor-pointer rounded-lg p-1 hover:bg-secondary/30">{product.name}</li>
+                                <li key={product._id} onClick={() => {setProduct(product.name); setProductId(product._id); setSearchProduct(product.name); setShowSearch(false)}} className="cursor-pointer rounded-lg p-1 hover:bg-secondary/30">{product.name}</li>
                             )
                         })}
                     </ul>

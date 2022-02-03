@@ -8,4 +8,9 @@ async function handlePostRecolte(req, res) {
   }
 }
 
-export default base().post(handlePostRecolte);
+async function handleGetRecoltes(req, res) {
+  const recoltes = await Recolte.getManyRecoltes();
+  res.status(200).send(recoltes);
+}
+
+export default base().post(handlePostRecolte).get(handleGetRecoltes);
