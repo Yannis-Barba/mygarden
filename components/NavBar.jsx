@@ -19,7 +19,7 @@ function NavBar() {
                         <Link passHref href="/">
                             <h2 className="cursor-pointer">Home</h2>
                         </Link>
-                        <Link passHref href="fiches">
+                        <Link passHref href="/fiches">
                             <h2 className="cursor-pointer">Fiches</h2>
                         </Link>
                         <Link passHref href="planning">

@@ -10,7 +10,7 @@ function Layout({children, pageTitle}) {
             <header>
                 <NavBar/>
             </header>
-            <main className="bg-third h-full w-full flex flex-col">
+            <main className="bg-third h-full w-full flex flex-col items-center">
                 {children}
             </main>
         </div>
