@@ -10,11 +10,27 @@ function Buttes() {
     const [listOfSectors, setListOfSectors] = useState([]);
     const [selectedSector, setSelectedSector] = useState("");
 
+    const [filteredSectors, setFilteredSectors] = useState([])
+
     const [sendStatus, setSendStatus] = useState(false);
+
+    function filterOfSector(id){
+        if(filteredSectors.includes(id)){
+            const newFilter = filteredSectors.filter((sectorId) => sectorId !== id)
+            setFilteredSectors(newFilter)
+        } else {
+            const newFilter = [...filteredSectors, id];
+            setFilteredSectors(newFilter)
+        }
+    }
 
     async function getSectors(){
         const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/sectors`);
         setListOfSectors(res.data);
+        res.data.map((sector) => {
+            const newFilter = [...filteredSectors, sector._id];
+            setFilteredSectors(newFilter)
+        })
     }
 
     async function getButtes(){
@@ -38,6 +54,8 @@ function Buttes() {
     useEffect(() => {
         getButtes();
     }, [sendStatus])
+
+    console.log("filtered sectors : ", filteredSectors)
     return (
         <Layout pageTitle={"Buttes"}>
             <div className="w-11/12 flex flex-col gap-4 items-center mt-4">
@@ -57,7 +75,7 @@ function Buttes() {
                         <ul className="flex gap-4">
                             {listOfSectors.map((sector) => {
                                 return (
-                                    <li key={sector._id} className={`${selectedSector === sector.name ? "bg-orangeRecolte": "bg-fourth/50"} text-third font-semibold p-2 border-fourth border-2  rounded-lg cursor-pointer`} onClick={() => setSelectedSector(sector.name)}> {sector.name} </li>
+                                    <li key={sector._id} className={`${selectedSector === sector._id ? "bg-orangeRecolte": "bg-fourth/50"} text-third font-semibold p-2 border-fourth border-2  rounded-lg cursor-pointer`} onClick={() => setSelectedSector(sector._id)}> {sector.name} </li>
                                 )
                             })}
                         </ul>
@@ -65,15 +83,26 @@ function Buttes() {
                 </form>
                 <p className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => sendButte()}>Valider</p>
             </div>
-            <div className="w-11/12 flex flex-col gap-4 mt-4">
+            <div className="w-11/12 flex flex-col gap-2 mt-4">
                 <h2 className="text-secondary text-2xl">Liste des buttes</h2>
+                <h4 className="text-secondary text-lg">Filtrer par secteur : </h4>
+                <ul className="flex gap-4 flex-wrap">
+                    {listOfSectors.map((sector) => {
+                        return (
+                            <li key={sector._id} className={`${filteredSectors.includes(sector._id) ? "bg-orangeRecolte": "bg-fourth/50"} text-third font-semibold p-2 border-fourth border-2  rounded-lg cursor-pointer`} onClick={() => filterOfSector(sector._id)}>{sector.name}</li>
+                        )
+                    })}
+                </ul>
                 <ul className="flex flex-wrap gap-4">
                     {listOfButtes.map((butte) => {
-                        return (
-                            <Link key={butte._id} passHref href={`/sectors/${butte._id}`}>
-                                <li key={butte._id} className="border-fourth/30 border-2 p-2 rounded-lg text-third font-semibold bg-orangeRecolte cursor-pointer">{butte.name}</li>
-                            </Link>
-                        )
+                        if(filteredSectors.includes(butte.sector)){
+                            return (
+                                <Link key={butte._id} passHref href={`/sectors/${butte._id}`}>
+                                    <li key={butte._id} className="border-fourth/30 border-2 p-2 rounded-lg text-third font-semibold bg-greenPlantation cursor-pointer">{butte.name}</li>
+                                </Link>
+                            )
+                        }
+
                     })}
                 </ul>
             </div>
