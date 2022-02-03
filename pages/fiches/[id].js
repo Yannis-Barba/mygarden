@@ -98,7 +98,6 @@ export default function FicheDetails({ product }) {
 
 export async function getStaticPaths() {
   const products = await getProducts();
-  console.log("products : ", products);
   return {
     paths: products.map((product) => {
       return {
@@ -111,7 +110,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { id } }) {
   const product = JSON.parse(JSON.stringify(await getOneProduct(id)));
-  console.log("product", product);
   return {
     props: { product },
   };

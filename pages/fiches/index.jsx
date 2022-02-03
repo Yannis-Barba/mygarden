@@ -27,30 +27,30 @@ function fiches() {
 
     return (
         <Layout pageTitle={"Fiches"}>
-            <h1 className="text-secondary text-4xl w-full text-center mb-4">Fiches</h1>
-            <div className="pl-8">
-            <label htmlFor="searchProduct" className="text-five">
-                Rechercher un produit : 
-                <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setShowSearch(false)}></input>
-            </label>
-            {showSearch && 
-            <div className="bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-2 ">
-                <ul>
-                    {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product, index) => {
-                        return (
-                            <li key={index} onClick={() => setSearchProduct(product.name)} className="cursor-pointer rounded-lg p-1 hover:bg-secondary/30">{product.name}</li>
-                        )
-                    })}
-                </ul>
-            </div>}
-            <p>ou</p>
-            {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct} showCreateProduct={showCreateProduct}/>}
-                {!showCreateProduct && (
-                <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowCreateProduct(!showCreateProduct)}>
-                    <p className="text-lg"> Ajouter un nouveau produit</p>
-                    <AddIcon sx={{color: "#A4A4A4", fontSize: 30}} className="border-2 rounded-full"/>
-                </div>
-                )}
+            <h1 className="text-secondary text-5xl w-full text-center mb-4 mt-4">Fiches</h1>
+            <div className="pl-8 md:flex md:items-center md: gap-4">
+                <label htmlFor="searchProduct" className="text-five md:flex">
+                    Rechercher un produit : 
+                    <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setShowSearch(false)}></input>
+                </label>
+                {showSearch && 
+                <div className="bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-2 absolute z-40">
+                    <ul>
+                        {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product, index) => {
+                            return (
+                                <li key={index} onClick={() => setSearchProduct(product.name)} className="cursor-pointer rounded-lg p-1 hover:bg-secondary/30">{product.name}</li>
+                            )
+                        })}
+                    </ul>
+                </div>}
+                <p>ou</p>
+                {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct} showCreateProduct={showCreateProduct}/>}
+                    {!showCreateProduct && (
+                    <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowCreateProduct(!showCreateProduct)}>
+                        <p className="text-lg"> Ajouter un nouveau produit</p>
+                        <AddIcon sx={{color: "#A4A4A4", fontSize: 30}} className="border-2 rounded-full"/>
+                    </div>
+                    )}
             </div>
             {listOfProducts.length !== 0 ? (
                 <ul className="flex flex-col gap-4 py-4 px-4 items-center w-full md:flex md:flex-row md:flex-wrap">
