@@ -25,7 +25,7 @@ function Sectors() {
 
     useEffect(() => {
         getSectors();
-    }, [])
+    }, [sendStatus])
 
     return (
         <Layout pageTitle={"Secteurs"}>

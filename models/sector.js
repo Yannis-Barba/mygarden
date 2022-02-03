@@ -24,9 +24,15 @@ function updateSector(data) {
   );
 }
 
+function deleteOneSector(id) {
+  console.log("here again");
+  return collection.deleteOne({ _id: ObjectId(id) });
+}
+
 module.exports = {
   createSector,
   getAllSectors,
   getOneSector,
   updateSector,
+  deleteOneSector,
 };

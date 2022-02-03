@@ -25,7 +25,15 @@ async function handlePutSector(req, res) {
   }
 }
 
+async function handleDeleteSector(req, res) {
+  if (req.query.id) {
+    const deletedSector = await Sector.deleteOneSector(req.query.id);
+    res.status(204).send(deletedSector);
+  }
+}
+
 export default base()
   .post(handlePostSector)
   .get(handleGetSectors)
-  .put(handlePutSector);
+  .put(handlePutSector)
+  .delete(handleDeleteSector);

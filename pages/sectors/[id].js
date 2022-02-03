@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { getAllSectors, getOneSector } from "../../models/sector";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function SectorDetails({ sector }) {
   const [name, setName] = useState(sector.name);
   const [description, setDescription] = useState(sector.description);
   const [showEdit, setShowEdit] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [sendStatus, setSendStatus] = useState(false);
+
+  const router = useRouter();
 
   async function sendUpdatedSector() {
     const res = await axios.put(
@@ -19,6 +25,20 @@ export default function SectorDetails({ sector }) {
         description,
       }
     );
+    setSendStatus(res.status === 200);
+  }
+
+  async function deleteSector() {
+    const res = await axios.delete(
+      `${process.env.NEXT_PUBLIC_HOST_API_URL}/api/sectors`,
+      {
+        params: { id: sector._id },
+      }
+    );
+    setSendStatus(res.status === 204);
+    router.push({
+      pathname: "/sectors",
+    });
   }
 
   return (
@@ -38,7 +58,35 @@ export default function SectorDetails({ sector }) {
             onClick={() => setShowEdit(!showEdit)}
           />
         )}
+        <DeleteIcon
+          sx={{ color: "#962C2C", fontSize: 40 }}
+          className="cursor-pointer"
+          onClick={() => setShowConfirmDelete(!showConfirmDelete)}
+        />
       </div>
+      {showConfirmDelete && (
+        <div className="flex flex-col gap-2 mt-4 md:w-full md:items-center">
+          <h2 className="text-five">
+            Êtes vous sûr de vouloir supprimer ce produit ?{" "}
+          </h2>
+          <div className="flex w-full justify-center gap-2">
+            <div
+              className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-secondary"
+              onClick={() => setShowConfirmDelete(false)}
+            >
+              <h2 className="text-third font-medium">Annuler</h2>
+              <CloseIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+            </div>
+            <div
+              className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-brownSemis"
+              onClick={() => deleteSector()}
+            >
+              <h2 className="text-third font-medium">Oui</h2>
+              <DeleteIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+            </div>
+          </div>
+        </div>
+      )}
       {showEdit && (
         <div className="w-11/12 flex flex-col gap-4 items-center mt-4">
           <form className="flex flex-col gap-2">
