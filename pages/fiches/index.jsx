@@ -31,10 +31,10 @@ function fiches() {
             <div className="pl-8 md:flex md:items-center flex flex-col gap-4">
                 <label htmlFor="searchProduct" className="text-five md:flex">
                     Rechercher un produit : 
-                    <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setShowSearch(false)}></input>
+                    <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setTimeout(() => setShowSearch(false), 200)}></input>
                 </label>
                 {showSearch && 
-                <div className="bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-2 absolute z-40">
+                <div className="bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-16 absolute z-40">
                     <ul>
                         {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product, index) => {
                             return (

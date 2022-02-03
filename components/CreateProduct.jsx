@@ -176,7 +176,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                     </ul>
                     )}
                 <div className="w-full flex gap-4 justify-center">
-                <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowCreateProduct(!showCreateProduct)}>Annuler</div>
+                    <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowCreateProduct(!showCreateProduct)}>Annuler</div>
                     <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => forUpdate ? sendUpdatedProduct() : sendNewProduct()}>Valider</div>
 
                 </div>

@@ -16,7 +16,7 @@ function recoltes() {
                 </div>
                 {showAddNewRecolte && (
                     <div> 
-                        <NewRecolte />
+                        <NewRecolte setShowAddNewRecolte={setShowAddNewRecolte} />
                     </div>
                 )}
                 <div>
