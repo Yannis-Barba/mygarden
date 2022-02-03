@@ -4,19 +4,33 @@ import { useEffect, useState } from "react";
 import NewRecolte from "../../components/NewRecolte";
 import axios from "axios";
 import Recolte from "../../components/Recolte";
+import dayjs from "dayjs";
 
 function recoltes() {
     const [showAddNewRecolte, setShowAddNewRecolte] = useState(false);
 
     const [listOfLastRecoltes, setListOfLastRecoltes] = useState([]);
+    const [listOfNextRecoltes, setListOfNextRecoltes] = useState([]);
 
     async function getRecoltes(){
         const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/recoltes`);
-        setListOfLastRecoltes(res.data);
+        sortByDate(res.data);
+    }
+
+    function sortByDate(arr){
+        const currentDate = dayjs().format("YYYY-MM-DD");
+        for(let recolte of arr){
+            if(recolte.date >= currentDate){
+                setListOfNextRecoltes((listOfNextRecoltes) => [...listOfNextRecoltes, recolte])
+            } else {
+                setListOfLastRecoltes((listOfLastRecoltes) => [...listOfLastRecoltes, recolte])
+            }
+        }
     }
 
     useEffect(() => {
         getRecoltes();
+
     }, [])
 
     return (
@@ -34,6 +48,17 @@ function recoltes() {
                 )}
                 <div>
                     <h2>Récoltes à venir</h2>
+                    {listOfNextRecoltes.length !== 0 && (
+                        <ul className="flex flex-col gap-2">
+                            {listOfNextRecoltes.map((recolte) => {
+                                return (
+                                    <li key={recolte._id}>
+                                        <Recolte recolte={recolte}/>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    )}
                 </div>
                 <div>
                     <h2>Dernière Récoltes</h2>

@@ -1,6 +1,7 @@
 const db = require("../db-config");
 const { ObjectId } = require("mongodb");
 const collection = db.collection("recoltes");
+import dayjs from "dayjs";
 
 function createRecolte(data) {
   return collection.insertOne({
@@ -12,7 +13,7 @@ function createRecolte(data) {
   });
 }
 
-function getManyRecoltes() {
+function getManyRecoltes(period) {
   return collection.find().toArray();
 }
 
