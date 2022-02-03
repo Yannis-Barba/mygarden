@@ -31,10 +31,8 @@ export default function FicheDetails({ product }) {
   }
   return (
     <Layout pageTitle={"Fiche details"}>
-      <div className="p-2 max-w-[500px]">
-        <Fiche product={product} />
-      </div>
-      <div className="flex gap-2">
+      <Fiche product={product} />
+      <div className="flex gap-2 my-6 md:w-full md:justify-center">
         {!showConfirmDelete && (
           <div
             className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-secondary"
@@ -62,7 +60,7 @@ export default function FicheDetails({ product }) {
         </div>
       </div>
       {showConfirmDelete && (
-        <div className="flex flex-col gap-2 mt-4">
+        <div className="flex flex-col gap-2 mt-4 md:w-full md:items-center">
           <h2 className="text-five">
             Êtes vous sûr de vouloir supprimer ce produit ?{" "}
           </h2>
