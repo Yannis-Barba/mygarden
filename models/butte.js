@@ -31,9 +31,14 @@ function updateButte(data) {
   );
 }
 
+function deleteOneButte(id) {
+  return collection.deleteOne({ _id: ObjectId(id) });
+}
+
 module.exports = {
   createButte,
   getOneButte,
   getAllButtes,
   updateButte,
+  deleteOneButte,
 };

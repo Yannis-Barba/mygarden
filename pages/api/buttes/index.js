@@ -25,7 +25,15 @@ async function handlePutButte(req, res) {
   }
 }
 
+async function handleDeleteButte(req, res) {
+  if (req.query.id) {
+    const deletedButte = await Butte.deleteOneButte(req.query.id);
+    res.status(204).send(deletedButte);
+  }
+}
+
 export default base()
   .post(handlePostButte)
   .get(handleGetButtes)
-  .put(handlePutButte);
+  .put(handlePutButte)
+  .delete(handleDeleteButte);
