@@ -47,9 +47,14 @@ function updateOneProduct(data) {
   );
 }
 
+function deleteOneProduct(id) {
+  return collection.deleteOne({ _id: ObjectId(id) });
+}
+
 module.exports = {
   createProduct,
   getProducts,
   getOneProduct,
   updateOneProduct,
+  deleteOneProduct,
 };

@@ -20,7 +20,16 @@ async function handlePutProduct(req, res) {
   }
 }
 
+async function handleDeleteProduct(req, res) {
+  console.log("delete back");
+  if (req.query.id) {
+    const deletedProduct = await Product.deleteOneProduct(req.query.id);
+    res.status(204).send(deletedProduct);
+  }
+}
+
 export default base()
   .post(handlePostProduct)
   .get(handleGetProducts)
-  .put(handlePutProduct);
+  .put(handlePutProduct)
+  .delete(handleDeleteProduct);
