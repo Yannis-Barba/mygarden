@@ -6,9 +6,9 @@ import Link from 'next/link';
 function Recolte({recolte}) {
     return (
         <Link passHref href={`/recoltes/${recolte._id}`}>
-            <div className="w-full flex justify-center mt-4 cursor-pointer">
+            <div className="w-full flex justify-center mt-4 cursor-pointer max-w-[400px]">
                 
-                <div className="flex flex-col gap-4 items-center bg-white drop-shadow-xl w-3/4 justify-around rounded-xl p-2">
+                <div className="flex flex-col gap-4 items-center bg-white drop-shadow-xl justify-around rounded-xl p-2">
                     <h2 className='text-brownSemis font-semibold'>{dayjs(recolte.date).format("D-MMM-YYYY")}</h2>
                     <div className='flex items-center space-x-6'>
                         <span className='flex items-center'>

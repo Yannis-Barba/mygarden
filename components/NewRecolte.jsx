@@ -65,14 +65,14 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
 
     // console.log("product: ", product)
     return (
-        <div>
-            <form>
+        <div className="w-full border-five border-2 rounded-lg pt-4 px-2">
+            <form className="w-full flex flex-col gap-2">
                 {!forUpdate && <label htmlFor="searchProduct" className="text-five md:flex">
                     Rechercher un produit : 
                     <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setTimeout(() => setShowSearch(false), 200)}></input>
                 </label>}
                 {showSearch && 
-                <div className={`bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-2 absolute z-40`}>
+                <div className={`bg-white w-2/3 max-w-[300px] border-2 border-five rounded-lg py-2 px-4 mt-16 absolute z-40 md:ml-32`}>
                     <ul>
                         {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product) => {
                             return (
@@ -82,7 +82,6 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
                     </ul>
                 </div>
                 }
-                {!forUpdate && <p> ou </p>}
                 {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct} showCreateProduct={showCreateProduct}/>}
                     {!showCreateProduct && !forUpdate && (
                     <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowCreateProduct(!showCreateProduct)}>
@@ -90,20 +89,23 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
                         <AddIcon sx={{color: "#A4A4A4", fontSize: 30}} className="border-2 rounded-full"/>
                     </div>
                     )}
-                    <h2 className="w-full text-center text-greenPlantation text-2xl my-4">{product}</h2>
-                <label htmlFor="date" className="text-fourth/50 flex gap-4"> Date
-                    <input id="date"type="date" className="rounded-xl border-2 bg-transparent w-2/3" value={date} onChange={(e) => setDate(e.target.value)}></input>
-                </label>
-                <label htmlFor="quantity" className="text-fourth/50 flex gap-4"> Quantité 
-                    <input id="quantity"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={quantity} onChange={(e) => setQuantity(e.target.value)}></input>
-                </label>
-                <label htmlFor="weight" className="text-fourth/50 flex gap-4"> Poids
-                    <input id="weight"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={weight} onChange={(e) => setWeight(e.target.value)}></input>
-                </label>
-                <div className="w-full flex gap-4 justify-center">
-                    <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={forUpdate ? () => setShowConfirmDeleteRecolte(true) : () => setShowAddNewRecolte(false)}>{forUpdate ? "Supprimer": "Annuler"}</div>
-                    <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => forUpdate ? sendUpdatedRecolte() : sendNewRecolte()}>Valider</div>
+                <div className="flex flex-col gap-2 pt-2 pb-4 px-2 my-4">
+                    <h2 className="w-full text-center text-greenPlantation text-2xl">{product}</h2>
+                    <label htmlFor="date" className="text-fourth/50 flex gap-4"> Date
+                        <input id="date"type="date" className="rounded-xl border-2 bg-transparent w-2/3" value={date} onChange={(e) => setDate(e.target.value)}></input>
+                    </label>
+                    <label htmlFor="quantity" className="text-fourth/50 flex gap-4"> Quantité 
+                        <input id="quantity"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={quantity} onChange={(e) => setQuantity(e.target.value)}></input>
+                    </label>
+                    <label htmlFor="weight" className="text-fourth/50 flex gap-4"> Poids
+                        <input id="weight"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={weight} onChange={(e) => setWeight(e.target.value)}></input>
+                    </label>
 
+                    <div className="w-full flex gap-4 justify-center">
+                        <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={forUpdate ? () => setShowConfirmDeleteRecolte(true) : () => setShowAddNewRecolte(false)}>{forUpdate ? "Supprimer": "Annuler"}</div>
+                        <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => forUpdate ? sendUpdatedRecolte() : sendNewRecolte()}>Valider</div>
+
+                    </div>
                 </div>
             </form>
         {showConfirmDeleteRecolte && (
