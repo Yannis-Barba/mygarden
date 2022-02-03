@@ -70,7 +70,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
     const months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     return (
         <div className=" bg-third h-fit w-full flex flex-col justify-center items-center">
-            <form className="bg-third py-4 px-2 flex flex-col gap-4 rounded-xl">
+            <form className="bg-third -ml-8 py-4 px-2 flex flex-col gap-4 rounded-xl border-2">
                 <h1 className="text-secondary text-4xl w-full text-center mb-4">{forUpdate ? "Éditer ": "Ajouter"} un produit</h1>
                 <label htmlFor="name" className="text-fourth/50 flex gap-4"> Name
                     <input id="name"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={name} onChange={(e) => setName(e.target.value)}></input>

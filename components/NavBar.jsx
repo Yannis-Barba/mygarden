@@ -34,7 +34,7 @@ function NavBar() {
                         <Link passHref href="plan">
                             <h2 className="cursor-pointer">Plan</h2>
                         </Link>
-                        <Link passHref href="recoltes">
+                        <Link passHref href="/recoltes">
                             <h2 className="cursor-pointer">Récoltes</h2>
                         </Link>
                     </div>
