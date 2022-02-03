@@ -16,11 +16,19 @@ async function handleGetRecoltes(req, res) {
 async function handlePutRecolte(req, res) {
   if (req.body.id) {
     const updatedRecolte = await Recolte.updateOneRecolte(req.body);
-    res.status(204).send(updatedRecolte);
+    res.status(200).send(updatedRecolte);
+  }
+}
+
+async function handleDeleteRecolte(req, res) {
+  if (req.query.id) {
+    const deletedRecolte = await Recolte.deleteOneRecolte(req.query.id);
+    res.status(204).send(deletedRecolte);
   }
 }
 
 export default base()
   .post(handlePostRecolte)
   .get(handleGetRecoltes)
-  .put(handlePutRecolte);
+  .put(handlePutRecolte)
+  .delete(handleDeleteRecolte);

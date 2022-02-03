@@ -33,9 +33,14 @@ function updateOneRecolte(data) {
   );
 }
 
+function deleteOneRecolte(id) {
+  return collection.deleteOne({ _id: ObjectId(id) });
+}
+
 module.exports = {
   createRecolte,
   getManyRecoltes,
   getOneRecolte,
   updateOneRecolte,
+  deleteOneRecolte,
 };

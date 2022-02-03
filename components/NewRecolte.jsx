@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CreateProduct from "./CreateProduct";
 import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
 
 function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
@@ -9,6 +11,8 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
     const [showSearch, setShowSearch] = useState(false);
     const [searchProduct, setSearchProduct] = useState("");
     const [showCreateProduct, setShowCreateProduct] = useState(false);
+
+    const [showConfirmDeleteRecolte, setShowConfirmDeleteRecolte] = useState(false);
 
     const [product, setProduct] = useState("");
     const [productId, setProductId] = useState("");
@@ -42,6 +46,14 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
             weight
         })
         setSendStatus(res.status === 201);
+    }
+
+    async function deleteRecolte(){
+        const res = await axios.delete(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/recoltes`, {
+            params: {
+                id: recolte._id
+            }
+        })
     }
 
     useEffect(() => {
@@ -89,11 +101,34 @@ function NewRecolte({setShowAddNewRecolte, forUpdate=false, recolte}) {
                     <input id="weight"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={weight} onChange={(e) => setWeight(e.target.value)}></input>
                 </label>
                 <div className="w-full flex gap-4 justify-center">
-                    {!forUpdate && <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => setShowAddNewRecolte(false)}>Annuler</div>}
+                    <div className="bg-brownSemis w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={forUpdate ? () => setShowConfirmDeleteRecolte(true) : () => setShowAddNewRecolte(false)}>{forUpdate ? "Supprimer": "Annuler"}</div>
                     <div className="bg-greenPlantation w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => forUpdate ? sendUpdatedRecolte() : sendNewRecolte()}>Valider</div>
 
                 </div>
             </form>
+        {showConfirmDeleteRecolte && (
+        <div className="flex flex-col gap-2 mt-4">
+          <h2 className="text-five">
+            Êtes vous sûr de vouloir supprimer ce produit ?{" "}
+          </h2>
+          <div className="flex w-full justify-center gap-2">
+            <div
+              className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-secondary"
+              onClick={() => setShowConfirmDeleteRecolte(false)}
+            >
+              <h2 className="text-third font-medium">Annuler</h2>
+              <CloseIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+            </div>
+            <div
+              className="w-fit flex justify-center items-center gap-4 cursor-pointer rounded-xl py-1 px-2 border-2 bg-brownSemis"
+              onClick={() => deleteRecolte()}
+            >
+              <h2 className="text-third font-medium">Oui</h2>
+              <DeleteIcon sx={{ color: "#FFFFF4", fontSize: 30 }} />
+            </div>
+          </div>
+        </div>
+      )}
         </div>
     );
 }
