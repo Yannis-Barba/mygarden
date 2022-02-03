@@ -19,8 +19,11 @@ function fiches() {
     }
 
     useEffect(() => {
-        getProducts();
-    }, [])
+        if(!showCreateProduct){
+            getProducts();
+        }
+
+    }, [showCreateProduct])
 
     return (
         <Layout pageTitle={"Fiches"}>
