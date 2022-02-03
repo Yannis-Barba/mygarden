@@ -6,7 +6,7 @@ import axios from "axios";
 import Recolte from "../../components/Recolte";
 import dayjs from "dayjs";
 
-function recoltes() {
+function Recoltes() {
     const [showAddNewRecolte, setShowAddNewRecolte] = useState(false);
 
     const [listOfLastRecoltes, setListOfLastRecoltes] = useState([]);
@@ -35,21 +35,21 @@ function recoltes() {
 
     return (
         <Layout>
-            <div className="w-full pl-4 flex flex-col gap-2 mb-8">
+            <div className="w-11/12 flex flex-col gap-2 mb-8 md:items-center">
                 <h1 className="text-secondary text-4xl w-full text-center mb-4">Récoltes</h1>
-                <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowAddNewRecolte(!showAddNewRecolte)}>
+                {!showAddNewRecolte && <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowAddNewRecolte(!showAddNewRecolte)}>
                         <p className="text-lg"> Ajouter une nouvelle récolte</p>
                         <AddIcon sx={{color: "#A4A4A4", fontSize: 30}} className="border-2 rounded-full"/>
-                </div>
+                </div>}
                 {showAddNewRecolte && (
                     <div> 
                         <NewRecolte setShowAddNewRecolte={setShowAddNewRecolte} />
                     </div>
                 )}
-                <div>
+                <div className="md:w-11/12">
                     <h2>Récoltes à venir</h2>
                     {listOfNextRecoltes.length !== 0 && (
-                        <ul className="flex flex-col gap-2">
+                        <ul className="flex flex-col gap-2 md:flex-row md:flex-wrap">
                             {listOfNextRecoltes.map((recolte) => {
                                 return (
                                     <li key={recolte._id}>
@@ -60,10 +60,10 @@ function recoltes() {
                         </ul>
                     )}
                 </div>
-                <div>
+                <div className="md:w-11/12">
                     <h2>Dernière Récoltes</h2>
                     {listOfLastRecoltes.length !== 0 && (
-                        <ul className="flex flex-col gap-2">
+                        <ul className="flex flex-col gap-2 md:flex-row md:flex-wrap">
                             {listOfLastRecoltes.map((recolte) => {
                                 return (
                                     <li key={recolte._id}>
@@ -79,4 +79,4 @@ function recoltes() {
     );
 }
 
-export default recoltes;
+export default Recoltes;

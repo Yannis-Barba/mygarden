@@ -69,17 +69,17 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
 
     const months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     return (
-        <div className=" bg-third h-fit w-full flex flex-col justify-center items-center">
-            <form className="bg-third -ml-8 py-4 px-2 flex flex-col gap-4 rounded-xl border-2">
-                <h1 className="text-secondary text-4xl w-full text-center mb-4">{forUpdate ? "Éditer ": "Ajouter"} un produit</h1>
-                <label htmlFor="name" className="text-fourth/50 flex gap-4"> Name
+        <div className=" bg-third h-fit flex flex-col justify-center items-center max-w-11/12 md:w-full">
+            <form className="bg-third py-4 px-2 flex flex-col gap-4 rounded-xl border-2 w-11/12 md:flex md:flex-row md:flex-wrap">
+                <h1 className="text-secondary text-2xl w-full text-center mb-4">{forUpdate ? "Éditer ": "Ajouter"} un produit</h1>
+                <label htmlFor="name" className="text-fourth/50 flex gap-4 justify-around items-center"> Name
                     <input id="name"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={name} onChange={(e) => setName(e.target.value)}></input>
                 </label>
-                <label htmlFor="genre" className="text-fourth/50 flex gap-4"> Genre
+                <label htmlFor="genre" className="text-fourth/50 flex gap-4 justify-around items-center"> Genre
                     <input id="genre"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={genre} onChange={(e) => setGenre(e.target.value)}></input>
                 </label>
                 <h3>Période de semis : </h3>
-                <label htmlFor="semisStart" className="text-fourth/50 flex gap-4" > Début
+                <label htmlFor="semisStart" className="text-fourth/50 flex gap-4 justify-around items-center" > Début
                 <select id="semisStart" className="rounded-xl border-2 bg-transparent p-1" value={semisStart} onChange={(e) => setSemisStart(e.target.value)}>
                         {months.map((month, index) => {
                             return (
@@ -88,7 +88,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                         })}
                     </select>
                 </label>
-                <label htmlFor="semisEnd" className="text-fourth/50 flex gap-4" > Fin
+                <label htmlFor="semisEnd" className="text-fourth/50 flex gap-4 justify-around items-center" > Fin
                 <select id="semisEnd" className="rounded-xl border-2 bg-transparent p-1" value={semisEnd} onChange={(e) => setSemisEnd(e.target.value)}>
                         {months.map((month, index) => {
                             return (
@@ -98,7 +98,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                     </select>
                 </label>
                 <h3>Période de plantation : </h3>
-                <label htmlFor="plantationStart" className="text-fourth/50 flex gap-4" > Début
+                <label htmlFor="plantationStart" className="text-fourth/50 flex gap-4 justify-around items-center" > Début
                     <select id="plantationStart" className="rounded-xl border-2 bg-transparent p-1" value={plantationStart} onChange={(e) => setPlantationStart(e.target.value)}>
                         {months.map((month, index) => {
                             return (
@@ -107,7 +107,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                         })}
                     </select>
                 </label>
-                <label htmlFor="plantationEnd" className="text-fourth/50 flex gap-4" > Fin
+                <label htmlFor="plantationEnd" className="text-fourth/50 flex gap-4 justify-around items-center" > Fin
                 <select id="plantationEnd" className="rounded-xl border-2 bg-transparent p-1" value={plantationEnd} onChange={(e) => setPlantationEnd(e.target.value)}>
                         {months.map((month, index) => {
                             return (
@@ -117,7 +117,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                     </select>
                 </label>
                 <h3>Période de récolte : </h3>
-                <label htmlFor="recolteStart" className="text-fourth/50 flex gap-4" > Début
+                <label htmlFor="recolteStart" className="text-fourth/50 flex gap-4 justify-around items-center" > Début
                 <select id="recoltesStart" className="rounded-xl border-2 bg-transparent p-1" value={recolteStart} onChange={(e) => setRecolteStart(e.target.value)}>
                         {months.map((month, index) => {
                             return (
@@ -126,7 +126,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                         })}
                     </select>
                 </label>
-                <label htmlFor="recolteEnd" className="text-fourth/50 flex gap-4" > Fin
+                <label htmlFor="recolteEnd" className="text-fourth/50 flex gap-4 justify-around items-center" > Fin
                 <select id="recolteEnd" className="rounded-xl border-2 bg-transparent p-1" value={recolteEnd} onChange={(e) => setRecolteEnd(e.target.value)}>
                         {months.map((month, index) => {
                             return (
@@ -135,11 +135,11 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                         })}
                     </select>
                 </label>
-                <label htmlFor="imgUrl" className="text-fourth/50 flex gap-4"> Image
-                    <input id="imgUrl" type="text" className="rounded-xl border-2 bg-transparent" value={imgUrl} onChange={(e) => setImgUrl(e.target.value)}></input>
+                <label htmlFor="imgUrl" className="text-fourth/50 flex gap-4 justify-around items-center"> Image
+                    <input id="imgUrl" type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={imgUrl} onChange={(e) => setImgUrl(e.target.value)}></input>
                 </label>
                 <h3>Association(s) : </h3>
-                <label htmlFor="goodAssociation" className="text-fourth/50 flex gap-4 items-center"> Bonne(s)
+                <label htmlFor="goodAssociation" className="text-fourth/50 flex gap-4 items-center justify-around"> Bonne(s)
                     <input id="goodAssociation" type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={newGoodAssociation} onChange={(e) => setNewGoodAssociation(e.target.value)}></input>
                     <div className="bg-secondary/80 w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => addNewGoodAssociation()}>Ok</div>
                 </label>
@@ -157,7 +157,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                         })}
                     </ul>
                     )}
-                <label htmlFor="badAssociation" className="text-fourth/50 flex gap-4 items-center"> Mauvaise(s)
+                <label htmlFor="badAssociation" className="text-fourth/50 flex gap-4 justify-around items-center"> Mauvaise(s)
                     <input id="badAssociation" type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={newBadAssociation} onChange={(e) => setNewBadAssociation(e.target.value)}></input>
                     <div className="bg-secondary/80 w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => addNewBadAssociation()}>Ok</div>
                 </label>

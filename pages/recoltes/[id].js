@@ -1,14 +1,5 @@
-import Fiche from "../../components/Fiche";
 import Layout from "../../components/Layout";
 import { getManyRecoltes, getOneRecolte } from "../../models/recolte";
-import EditIcon from "@mui/icons-material/Edit";
-import CloseIcon from "@mui/icons-material/Close";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
-import CreateProduct from "../../components/CreateProduct";
-import axios from "axios";
-import { useRouter } from "next/router";
-import Recolte from "../../components/Recolte";
 import dayjs from "dayjs";
 import NewRecolte from "../../components/NewRecolte";
 
