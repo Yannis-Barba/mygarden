@@ -31,7 +31,9 @@ export default function FicheDetails({ product }) {
   }
   return (
     <Layout pageTitle={"Fiche details"}>
-      <Fiche product={product} />
+      <div className="w-11/12 flex md:justify-center md:w-full mt-2">
+        <Fiche product={product} />
+      </div>
       <div className="flex gap-2 my-6 md:w-full md:justify-center">
         {!showConfirmDelete && (
           <div

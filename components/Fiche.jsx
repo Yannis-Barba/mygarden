@@ -25,7 +25,7 @@ function Fiche({product}) {
 
     return (
         <Link passHref href={`/fiches/${product._id}`}>
-        <div className="bg-white drop-shadow-xl cursor-pointer p-4 rounded-xl flex flex-col gap-4 w-full">
+        <div className="bg-white drop-shadow-xl cursor-pointer p-4 rounded-xl flex flex-col gap-4 w-full md:w-11/12">
             <div className="flex gap-4 w-11/12">
                 <img src="./pictures/carrot.svg" alt={product.name} className="w-20 h-20"/>
                 <div className="flex flex-col">
