@@ -6,7 +6,7 @@ import axios from "axios";
 import Recolte from "../../components/Recolte";
 import dayjs from "dayjs";
 
-function recoltes() {
+function Recoltes() {
     const [showAddNewRecolte, setShowAddNewRecolte] = useState(false);
 
     const [listOfLastRecoltes, setListOfLastRecoltes] = useState([]);
@@ -79,4 +79,4 @@ function recoltes() {
     );
 }
 
-export default recoltes;
+export default Recoltes;

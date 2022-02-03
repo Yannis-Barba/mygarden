@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from "axios";
 import Fiche from "../../components/Fiche";
 
-function fiches() {
+function Fiches() {
     const [showCreateProduct, setShowCreateProduct] = useState(false);
     const [listOfProducts, setListOfProducts] = useState([]);
     const [searchProduct, setSearchProduct] = useState("");
@@ -67,4 +67,4 @@ function fiches() {
     );
 }
 
-export default fiches;
+export default Fiches;
