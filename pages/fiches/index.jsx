@@ -28,13 +28,13 @@ function Fiches() {
     return (
         <Layout pageTitle={"Fiches"}>
             <h1 className="text-secondary text-5xl w-full text-center mb-4 mt-4">Fiches</h1>
-            <div className="pl-8 md:flex md:items-center flex flex-col gap-4">
-                <label htmlFor="searchProduct" className="text-five md:flex">
+            <div className="md:flex md:items-start flex flex-col items-center gap-4">
+                <label htmlFor="searchProduct" className="text-five md:flex ml-4 w-full">
                     Rechercher un produit : 
                     <input id="searchProduct" className="rounded-xl border-2 bg-transparent w-2/3" value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} onFocus={() => setShowSearch(true)} onBlur={() => setTimeout(() => setShowSearch(false), 200)}></input>
                 </label>
                 {showSearch && 
-                <div className="bg-white w-2/3 border-2 border-five rounded-lg py-2 px-4 mt-16 absolute z-40">
+                <div className="bg-white min-w-[300px] max-w-[300px] border-2 border-five rounded-lg py-2 px-4 mt-16 absolute z-40 left-6 md:left-40">
                     <ul>
                         {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product, index) => {
                             return (
@@ -43,20 +43,19 @@ function Fiches() {
                         })}
                     </ul>
                 </div>}
-                <p>ou</p>
                 {showCreateProduct && <CreateProduct setShowCreateProduct={setShowCreateProduct} showCreateProduct={showCreateProduct}/>}
                     {!showCreateProduct && (
-                    <div id="addProduct" className="flex gap-2 items-center w-fit rounded-full cursor-pointer text-five" onClick={() => setShowCreateProduct(!showCreateProduct)}>
+                    <div id="addProduct" className="flex gap-2 items-center w-full ml-4 rounded-full cursor-pointer text-five md:max-w-[300px]" onClick={() => setShowCreateProduct(!showCreateProduct)}>
                         <p className="text-lg"> Ajouter un nouveau produit</p>
                         <AddIcon sx={{color: "#A4A4A4", fontSize: 30}} className="border-2 rounded-full"/>
                     </div>
                     )}
             </div>
             {listOfProducts.length !== 0 ? (
-                <ul className="flex flex-col gap-4 py-4 px-4 items-center w-full md:flex md:flex-row md:flex-wrap">
+                <ul className="flex flex-col gap-4 py-4 items-center w-full md:flex md:flex-row md:flex-wrap">
                         {listOfProducts.filter((product) => product.name.includes(searchProduct)).map((product) => {
                             return (
-                                <li key={product._id} className="w-fit">
+                                <li key={product._id} className="w-11/12 max-w-[400px]">
                                     <Fiche product={product}/>
                                 </li>
                             )

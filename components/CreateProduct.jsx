@@ -69,8 +69,8 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
 
     const months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     return (
-        <div className=" bg-third h-fit w-full flex flex-col justify-center items-center">
-            <form className="bg-third -ml-8 py-4 px-2 flex flex-col gap-4 rounded-xl border-2">
+        <div className=" bg-third h-fit flex flex-col justify-center items-center max-w-11/12">
+            <form className="bg-third py-4 px-2 flex flex-col gap-4 rounded-xl border-2 w-11/12">
                 <h1 className="text-secondary text-4xl w-full text-center mb-4">{forUpdate ? "Éditer ": "Ajouter"} un produit</h1>
                 <label htmlFor="name" className="text-fourth/50 flex gap-4"> Name
                     <input id="name"type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={name} onChange={(e) => setName(e.target.value)}></input>
@@ -136,7 +136,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                     </select>
                 </label>
                 <label htmlFor="imgUrl" className="text-fourth/50 flex gap-4"> Image
-                    <input id="imgUrl" type="text" className="rounded-xl border-2 bg-transparent" value={imgUrl} onChange={(e) => setImgUrl(e.target.value)}></input>
+                    <input id="imgUrl" type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={imgUrl} onChange={(e) => setImgUrl(e.target.value)}></input>
                 </label>
                 <h3>Association(s) : </h3>
                 <label htmlFor="goodAssociation" className="text-fourth/50 flex gap-4 items-center"> Bonne(s)
