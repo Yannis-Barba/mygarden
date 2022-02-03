@@ -17,8 +17,16 @@ function getOneSector(id) {
   return collection.findOne({ _id: ObjectId(id) });
 }
 
+function updateSector(data) {
+  return collection.updateOne(
+    { _id: ObjectId(data.id) },
+    { $set: { name: data.name, description: data.description } }
+  );
+}
+
 module.exports = {
   createSector,
   getAllSectors,
   getOneSector,
+  updateSector,
 };

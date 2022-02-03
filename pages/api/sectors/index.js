@@ -18,4 +18,14 @@ async function handleGetSectors(req, res) {
   }
 }
 
-export default base().post(handlePostSector).get(handleGetSectors);
+async function handlePutSector(req, res) {
+  if (req.body.id) {
+    const updatedSector = await Sector.updateSector(req.body);
+    res.status(200).send(updatedSector);
+  }
+}
+
+export default base()
+  .post(handlePostSector)
+  .get(handleGetSectors)
+  .put(handlePutSector);
