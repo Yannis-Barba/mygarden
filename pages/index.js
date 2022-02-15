@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Layout pageTitle={"My Garden"}>
       <h1 className="w-full text-center mt-10 text-4xl text-secondary font-semi-bold">
-        My Garden
+        Mon Jardin
       </h1>
       <div className=" w-full flex flex-wrap gap-6 mt-10 justify-center items-center">
         <MainSection

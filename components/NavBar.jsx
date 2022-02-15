@@ -9,7 +9,7 @@ function NavBar() {
     return (
         <>
         <div id="navBar" className="bg-primary h-16 flex items-center pl-4">
-                <MenuIcon sx={{color: "#00477A", fontSize: 50}} onClick={() => setShowMenu(!showMenu)} className='cursor-pointer'/>
+                <MenuIcon sx={{color: "#4A7140", fontSize: 50}} onClick={() => setShowMenu(!showMenu)} className='cursor-pointer'/>
             
         </div>
         {showMenu ?

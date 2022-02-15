@@ -161,7 +161,7 @@ function CreateProduct({setShowCreateProduct, showCreateProduct, forUpdate=false
                     <input id="badAssociation" type="text" className="rounded-xl border-2 bg-transparent w-2/3" value={newBadAssociation} onChange={(e) => setNewBadAssociation(e.target.value)}></input>
                     <div className="bg-secondary/80 w-fit p-2 rounded-xl text-third font-medium cursor-pointer" onClick={() => addNewBadAssociation()}>Ok</div>
                 </label>
-                {goodAssociation.length !== 0 && (
+                {badAssociation.length !== 0 && (
                     <ul className="flex flex-wrap gap-4">
                         {badAssociation.map((product, index) => {
                             return (
